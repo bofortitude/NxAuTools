@@ -63,6 +63,7 @@ public class RunnableTask implements Runnable {
                 e.printStackTrace();
             }
         }
+        logger.info("("+this.threadName+") Thread has been over.");
     }
 
 }

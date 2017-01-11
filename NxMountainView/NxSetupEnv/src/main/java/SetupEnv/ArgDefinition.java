@@ -7,4 +7,6 @@ public class ArgDefinition {
     public String topology;
     public String logDirectory;
     public boolean debug = false;
+    public boolean genTopologyExample;
+    public String shellCommandsFile;
 }

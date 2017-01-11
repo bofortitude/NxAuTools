@@ -160,9 +160,6 @@ public class ClearLinuxNetwork {
         this.sshManager.checkConnection();
         this.clearNetworkConfig();
         this.initNetworkConfig();
-
-
-
     }
 
 

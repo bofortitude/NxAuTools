@@ -25,12 +25,14 @@ public class Arguments {
 //        this.options.addOption("d", "directory", true, "Specify the configuration directory.");
         this.options.addOption("d", "debug", false, "Enable debug mode.");
         this.options.addOption("l", "log-directory", true, "Specify the app log file directory. No log file output if not given.");
+        this.options.addOption("e", "gen-topology-example", false, "Show topology file example, if this option is enabled, the topology option is not required then.");
+        this.options.addOption("f", "shell-commands-file", true, "Generate command sets with prefix \"cmdXX\" from a shell commands file.");
     }
 
     private void printHelp(){
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp( "\n"+this.appName+
-                        " <Topology> [options]"+"\n",
+                        " [Topology] [options]"+"\n",
                 this.options );
         System.exit(0);
     }
@@ -40,11 +42,9 @@ public class Arguments {
             this.printHelp();
         }
 
-        if (this.argsArray.length < 1){
+        if (this.argsArray.length < 1 && !cmd.hasOption("e") && !cmd.hasOption("f")){
             this.printHelp();
         }
-
-
     }
 
     private void saveArgs(CommandLine cmd){
@@ -61,6 +61,14 @@ public class Arguments {
             this.myOptions.logDirectory = cmd.getOptionValue("l");
         }
 
+        if (cmd.hasOption("e")){
+            this.myOptions.genTopologyExample=true;
+        }
+
+        if (cmd.getOptionValue("f") != null){
+            this.myOptions.shellCommandsFile = cmd.getOptionValue("f");
+        }
+
     }
 
     public void handle(){
@@ -72,8 +80,6 @@ public class Arguments {
             this.argsLimitation(cmd);
 //            String dire = cmd.getOptionValue("d");
             this.saveArgs(cmd);
-
-
 
         } catch (ParseException e) {
 //            e.printStackTrace();
