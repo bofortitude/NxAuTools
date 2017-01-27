@@ -64,10 +64,10 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\NxAssistanT-1.0-SNAPSHOT.jar;%APP_HOME%\lib\httpclient-4.5.2.jar;%APP_HOME%\lib\commons-cli-1.3.1.jar;%APP_HOME%\lib\log4j-core-2.7.jar;%APP_HOME%\lib\dom4j-1.6.1.jar;%APP_HOME%\lib\httpcore-4.4.4.jar;%APP_HOME%\lib\commons-logging-1.2.jar;%APP_HOME%\lib\commons-codec-1.9.jar;%APP_HOME%\lib\log4j-api-2.7.jar;%APP_HOME%\lib\xml-apis-1.0.b2.jar;%APP_HOME%\var
+set CLASSPATH=%APP_HOME%\lib\NxAssistanT-1.0-SNAPSHOT.jar;%APP_HOME%\lib\httpclient-4.5.2.jar;%APP_HOME%\lib\commons-cli-1.3.1.jar;%APP_HOME%\lib\log4j-core-2.7.jar;%APP_HOME%\lib\dom4j-1.6.1.jar;%APP_HOME%\lib\controlsfx-8.40.12.jar;%APP_HOME%\lib\httpcore-4.4.4.jar;%APP_HOME%\lib\commons-logging-1.2.jar;%APP_HOME%\lib\commons-codec-1.9.jar;%APP_HOME%\lib\log4j-api-2.7.jar;%APP_HOME%\lib\xml-apis-1.0.b2.jar;%APP_HOME%\var
 
 @rem Execute NxAssistanT
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %NX_ASSISTAN_T_OPTS%  -classpath "%CLASSPATH%" TestAssistant.enMain %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %NX_ASSISTAN_T_OPTS%  -classpath "%CLASSPATH%" AssistanTFx.Main %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell

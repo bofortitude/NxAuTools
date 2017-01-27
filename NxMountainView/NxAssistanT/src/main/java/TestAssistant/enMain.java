@@ -1,26 +1,15 @@
 package TestAssistant;
 
 /**
- * Created by root on 1/3/17.
+ * Created by bofei on 1/12/2017.
  */
-
-import org.apache.logging.log4j.*;
-
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-
-
 public class enMain {
-    private static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
+
     public static void main(String [] args){
-
-
-
-
+        System.out.println("The app has been started!");
 
 
 
     }
-
 }
