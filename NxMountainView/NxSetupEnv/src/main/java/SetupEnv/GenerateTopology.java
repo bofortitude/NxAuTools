@@ -57,7 +57,7 @@ public class GenerateTopology {
 
             System.out.println("");
             System.out.println("[Server1]");
-            System.out.println("ip=10.12.21");
+            System.out.println("ip=10.0.12.21");
             System.out.println("username=root");
             System.out.println("password=fortinet");
             for (String i: cmdLineList){
