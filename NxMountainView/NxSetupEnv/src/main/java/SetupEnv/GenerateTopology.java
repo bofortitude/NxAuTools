@@ -70,7 +70,7 @@ public class GenerateTopology {
             if (myArgs.myOptions.genTopologyExample){
                 System.out.println("");
                 System.out.println("[Server1]");
-                System.out.println("ip=10.12.21");
+                System.out.println("ip=10.0.12.21");
                 System.out.println("username=root");
                 System.out.println("password=fortinet");
                 System.out.println("cmd10=ip link add link eth1 name eth1.1101 type vlan id 1101");

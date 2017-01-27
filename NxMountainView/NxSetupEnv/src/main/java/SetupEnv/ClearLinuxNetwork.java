@@ -74,7 +74,10 @@ public class ClearLinuxNetwork {
                 this.sshManager.sendCommand("ip route |grep "+mgmtInterface+" | grep -v \"proto kernel\"|awk -F \"dev\" '{print $1}'").split("\n");
         List<String> routeCmdList = new ArrayList<String>();
         for (String routeCmd: originalRouteArray){
-            routeCmdList.add("ip route add "+routeCmd);
+            if (!routeCmd.equals("")){
+                routeCmdList.add("ip route add "+routeCmd);
+            }
+
         }
         String mgmtRouteRecoveryCmd = this.mergeCmd(routeCmdList);
         logger.info("Management route recovery command on \""+this.remoteIp+"\" is \""+mgmtRouteRecoveryCmd+"\" .");
