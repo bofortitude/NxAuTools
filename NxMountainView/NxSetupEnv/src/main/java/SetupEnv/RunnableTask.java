@@ -2,6 +2,8 @@ package SetupEnv;
 
 import org.apache.logging.log4j.LogManager;
 
+import java.util.List;
+
 /**
  * Created by root on 1/10/17.
  */
@@ -10,12 +12,24 @@ public class RunnableTask implements Runnable {
     private Thread thread;
     private String threadName;
     private DeviceData deviceData;
+    private List<String> preCmdListBeforeTopology = null;
+    private List<String> postCmdListAfterTopology = null;
 
 
     public RunnableTask(String threadName, DeviceData deviceData){
         this.threadName = threadName;
         this.deviceData = deviceData;
     }
+
+    public void setPreCmdListBeforeTopology(List<String> cmdList){
+        this.preCmdListBeforeTopology = cmdList;
+    }
+
+    public void setPostCmdListAfterTopology(List<String> cmdList){
+        this.postCmdListAfterTopology = cmdList;
+    }
+
+
 
 
     public void run() {
@@ -37,10 +51,40 @@ public class RunnableTask implements Runnable {
         logger.info("("+this.threadName+") Clean destination configuration over.");
 
 
+        // --------------------------------------------------------------
+        // Pre configuration before topology file
+        if (this.preCmdListBeforeTopology != null){
+            logger.info("("+this.threadName+") Start to execute the commands in pre config before topology file.");
+            for (String cmd: this.preCmdListBeforeTopology){
+                logger.info("("+this.threadName+") Sending the command \""+cmd+"\" .");
+                sshManager.sendCommand(cmd);
+            }
+        }
+
+
+        // --------------------------------------------------------------
+
+
         for (String cmd: this.deviceData.commandsList){
             logger.info("("+this.threadName+") Sending the command \""+cmd+"\" .");
             sshManager.sendCommand(cmd);
         }
+
+        // --------------------------------------------------------------
+        // Post configuration after topology file
+        if (this.postCmdListAfterTopology != null){
+            logger.info("("+this.threadName+") Start to execute the commands in post config after topology file.");
+            for (String cmd: this.postCmdListAfterTopology){
+                logger.info("("+this.threadName+") Sending the command \""+cmd+"\" .");
+                sshManager.sendCommand(cmd);
+            }
+
+        }
+
+        // --------------------------------------------------------------
+
+
+
         logger.info("("+this.threadName+") Trying to close the connection.");
         sshManager.close();
 
